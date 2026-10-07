@@ -10,5 +10,7 @@ public class Main {
         firstBook.pageCount = 412;
 
         firstBook.displayDetails();
+        firstBook.borrowBook();
+        firstBook.displayDetails();
     }
 }
