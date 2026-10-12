@@ -1,14 +1,25 @@
 package ie.atu.oop.week1;
 
-
 public class Book {
     private final String title;
     private final String author;
     private final int pageCount;
 
     public Book(String title, String author, int pageCount) {
-        this.title = title;
-        this.author = author;
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("Title must not be blank");
+        }
+
+        if (author == null || author.isBlank()) {
+            throw new IllegalArgumentException("Author must not be blank");
+        }
+
+        if (pageCount <= 0) {
+            throw new IllegalArgumentException("Page count must be positive");
+        }
+
+        this.title = title.trim();
+        this.author = author.trim();
         this.pageCount = pageCount;
     }
 
