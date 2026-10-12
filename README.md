@@ -54,3 +54,32 @@ The program was run successfully. The three Book objects displayed different tit
 
 AI Assistance
 AI assistance was used to help understand Java and OOP concepts, the purpose of the methods and the Git/lab steps. I reviewed and tested the code and am responsible for understanding and explaining the submitted code and verification results. :::
+
+## Lab 3 - Encapsulation and Class Design
+
+- JDK version: Java 21
+- Package: ie.atu.oop.week1
+
+### Constructor validation
+The Book constructor checks for null before isBlank because calling isBlank on null would cause a NullPointerException. A title and author cannot be null or blank, and page count must be greater than zero.
+
+### Final fields and status
+The title, author, and pageCount fields are final because they should not change after a valid Book object is created. The status is not final because it changes when a book is borrowed or returned.
+
+### Encapsulation
+Book does not have a setStatus method. Code must use borrowBook and returnBook so Book can check whether a change is allowed. This prevents borrowing a book twice or returning an already available book.
+
+### Responsibilities
+Book validates its own title, author, page count, and status changes. LibraryService checks for a null Book and checks that loan duration is from 1 to 14 days. Main creates objects, calls methods, and prints results.
+
+### Test results
+- Successful 7-day loan: status changed from AVAILABLE to ONLOAN.
+- Rejected 15-day loan: printed "Loan days must be from 1 to 14" and status remained AVAILABLE.
+- Rejected second return: printed "Book is already available" and status remained AVAILABLE.
+- Maven build: BUILD SUCCESS.
+
+### Debugger observation
+The valid 7-day loan reaches Book.borrowBook because 7 is inside the allowed range. The 15-day loan does not reach Book.borrowBook because LibraryService throws an IllegalArgumentException first. The first book is AVAILABLE before the 15-day request because returnBook was called after the earlier successful loan.
+
+### AI assistance
+AI assistance was used to explain the lab instructions, class responsibilities, errors, and testing steps. The code was typed, run, tested, and understood by the student.
