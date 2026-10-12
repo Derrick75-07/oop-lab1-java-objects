@@ -1,32 +1,30 @@
 package ie.atu.oop.week1;
 
 public class Main {
-
     public static void main(String[] args) {
+        Book first = new Book("Dune", "Frank Herbert", 412);
+        Book second = new Book("Clean Code", "Robert C. Martin", 464);
 
-        Book firstBook = createBook("Dune", "Frank Herbert", 412);
-        Book secondBook = createBook("Clean Code", "Robert C. Martin", 464);
-        Book thirdBook = createBook(
-                "The C Programming Language",
-                "Kernighan and Ritchie",
-                274
-        );
+        LibraryService service = new LibraryService();
 
-        firstBook.displayDetails();
-        secondBook.displayDetails();
-        thirdBook.displayDetails();
+        System.out.println(first.getStatus());
 
-        firstBook.borrowBook();
-        firstBook.displayDetails();
-    }
+        service.loanBook(first, 7);
 
-    private static Book createBook(String title, String author, int pageCount) {
-        Book book = new Book();
+        System.out.println(first.getStatus());
 
-        book.title = title;
-        book.author = author;
-        book.pageCount = pageCount;
+        service.returnBook(first);
 
-        return book;
+        System.out.println(first.getStatus());
+
+        System.out.println(second.getStatus());
+
+        try {
+            service.loanBook(first, 15);
+        } catch (IllegalArgumentException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        System.out.println(first.getStatus());
     }
 }

@@ -1,23 +1,59 @@
 package ie.atu.oop.week1;
 
 public class Book {
-    public String title;
-    public String author;
-    public int pageCount;
-    public boolean available = true;
+    private final String title;
+    private final String author;
+    private final int pageCount;
+    private BookStatus status;
 
-    public void displayDetails() {
-        System.out.println(title + " by " + author);
-        System.out.println(pageCount + " pages");
-        System.out.println("Available: " + available);
+    public Book(String title, String author, int pageCount) {
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("Title must not be blank");
+        }
+
+        if (author == null || author.isBlank()) {
+            throw new IllegalArgumentException("Author must not be blank");
+        }
+
+        if (pageCount <= 0) {
+            throw new IllegalArgumentException("Page count must be positive");
+        }
+
+        this.title = title.trim();
+        this.author = author.trim();
+        this.pageCount = pageCount;
+        this.status = BookStatus.AVAILABLE;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public BookStatus getStatus() {
+        return status;
     }
 
     public void borrowBook() {
-        if (available) {
-            available = false;
-            System.out.println(title + " has been borrowed.");
-        } else {
-            System.out.println(title + " is already on loan.");
+        if (status == BookStatus.ONLOAN) {
+            throw new IllegalStateException("Book is already on loan");
         }
+
+        status = BookStatus.ONLOAN;
+    }
+
+    public void returnBook() {
+        if (status == BookStatus.AVAILABLE) {
+            throw new IllegalStateException("Book is already available");
+        }
+
+        status = BookStatus.AVAILABLE;
     }
 }
