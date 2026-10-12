@@ -83,3 +83,22 @@ The valid 7-day loan reaches Book.borrowBook because 7 is inside the allowed ran
 
 ### AI assistance
 AI assistance was used to explain the lab instructions, class responsibilities, errors, and testing steps. The code was typed, run, tested, and understood by the student.
+## Lab 4 - Collections and Library Catalogue
+
+Lab 4 changed LibraryService from working with one Book passed into a method to owning a List<Book> catalogue.
+
+List<Book> tells Java that the collection stores Book references only. The books field is final, meaning the variable cannot be assigned a different List, but Book objects can still be added to or removed from the ArrayList.
+
+The enhanced for loop variable, Book book, represents one Book reference from the books list on each loop iteration.
+
+findBookByTitle returns the matching Book for a known title such as Dune. It returns null if the title is not found, such as The Hobbit.
+
+removeBook reuses findBookByTitle so the search logic is written once rather than repeated in a second loop.
+
+Main creates Book objects, calls service methods, and prints results. LibraryService owns and searches the catalogue, removes books, and validates loan duration. Book controls its own status changes through borrowBook and returnBook.
+
+Final test result: the catalogue started with 3 books and ended with 2 after Clean Code was removed.
+
+Maven build: BUILD SUCCESS.
+
+AI assistance was used to explain collections, code structure, testing, and debugging steps. The code was typed, tested, and understood by the student.
