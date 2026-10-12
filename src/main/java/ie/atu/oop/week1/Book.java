@@ -48,4 +48,12 @@ public class Book {
 
         status = BookStatus.ONLOAN;
     }
+
+    public void returnBook() {
+        if (status == BookStatus.AVAILABLE) {
+            throw new IllegalStateException("Book is already available");
+        }
+
+        status = BookStatus.AVAILABLE;
+    }
 }
